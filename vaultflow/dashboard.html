@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VaultFlow - Dashboard</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="topbar">
+      <h2>Dashboard</h2>
+      <button id="logoutBtn" class="secondary">Logout</button>
+    </div>
+
+    <div class="grid">
+
+      <!-- ✅ My Files -->
+      <div class="card">
+        <div class="cardHead">
+          <h3>My Files</h3>
+          <div class="row">
+            <button id="newFolderBtn" class="secondary">New Folder</button>
+            <button id="addFileBtn">Add File</button>
+          </div>
+        </div>
+
+        <p class="hint" id="filesHint"></p>
+
+        <div id="filesList" class="list"></div>
+      </div>
+
+      <!-- ✅ My Notes -->
+      <div class="card">
+        <div class="cardHead">
+          <h3>My Notes</h3>
+          <button id="newNoteBtn">New Note</button>
+        </div>
+
+        <div id="notesList" class="list"></div>
+      </div>
+
+      <!-- ✅ Team Members -->
+      <div class="card">
+        <div class="cardHead">
+          <h3>Team Members</h3>
+          <button id="addMemberBtn">Add Member</button>
+        </div>
+
+        <div id="membersList" class="list"></div>
+      </div>
+
+    </div>
+
+    <!-- ✅ Modal -->
+    <div class="modal hidden" id="modal">
+      <div class="modalBox">
+        <h3 id="modalTitle"></h3>
+        <div id="modalBody"></div>
+
+        <p class="error" id="modalError"></p>
+
+        <div class="row">
+          <button class="secondary" id="modalCancelBtn">Cancel</button>
+          <button id="modalOkBtn">Create</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script type="module" src="./js/dashboard.js"></script>
+</body>
+</html>

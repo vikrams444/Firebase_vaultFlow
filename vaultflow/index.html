@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VaultFlow - Auth</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="card" id="authCard">
+      <h2>VaultFlow Login</h2>
+
+      <div class="field">
+        <label>Email</label>
+        <input id="email" type="email" placeholder="Enter email" />
+      </div>
+
+      <div class="field">
+        <label>Password</label>
+        <input id="password" type="password" placeholder="Enter password" />
+      </div>
+
+      <p class="error" id="authError"></p>
+
+      <div class="row">
+        <button id="loginBtn">Login</button>
+        <button class="secondary" id="signupBtn">Sign Up</button>
+      </div>
+    </div>
+
+    <!-- ✅ Verification Screen -->
+    <div class="card hidden" id="verifyCard">
+      <h2>Verify your email</h2>
+      <p id="verifyText"></p>
+
+      <button id="backToLoginBtn">Login</button>
+      <button id="resendBtn" class="secondary">Resend Email</button>
+
+    </div>
+
+  </div>
+
+  <script type="module" src="./js/auth.js"></script>
+</body>
+</html>

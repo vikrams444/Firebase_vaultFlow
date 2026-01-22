@@ -20,7 +20,7 @@ body {
   margin-bottom: 20px;
 }
 
-.hidden { display: none; }
+.hidden { display: none  !important; }
 
 .field {
   margin-bottom: 12px;

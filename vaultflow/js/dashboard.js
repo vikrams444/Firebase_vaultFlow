@@ -35,6 +35,8 @@ const addFileBtn = document.getElementById("addFileBtn");
 const newNoteBtn = document.getElementById("newNoteBtn");
 const addMemberBtn = document.getElementById("addMemberBtn");
 
+const foldersList = document.getElementById("foldersList");
+
 const filesList = document.getElementById("filesList");
 const notesList = document.getElementById("notesList");
 const membersList = document.getElementById("membersList");
@@ -73,7 +75,46 @@ onAuthStateChanged(auth, (user) => {
   setupButtons();
 });
 
+
 function setupFirestoreLists() {
+
+  // ✅ Folders
+  renderLoading(foldersList);
+
+  const foldersRef = collection(db, "users", uid, "folders");
+  const foldersQ = query(foldersRef, orderBy("createdAt", "desc"));
+
+  onSnapshot(
+    foldersQ,
+    (snap) => {
+      if (snap.empty) {
+        renderEmpty(foldersList, "No folders yet.");
+        return;
+      }
+
+      foldersList.innerHTML = "";
+      snap.forEach((docSnap) => {
+        const folder = docSnap.data();
+
+        const row = document.createElement("div");
+        row.className = "listRow";
+
+        row.innerHTML = `
+          <div>
+            <b>📁 ${folder.name || "Untitled Folder"}</b>
+            <div class="small muted">Folder</div>
+          </div>
+        `;
+
+        foldersList.appendChild(row);
+      });
+    },
+    (error) => {
+      console.log("Folders snapshot error:", error.code, error.message);
+      renderEmpty(foldersList, "Unable to load folders");
+    }
+  );
+
   // ✅ Files
   renderLoading(filesList);
   const filesRef = collection(db, "users", uid, "files");
@@ -302,6 +343,7 @@ function setupButtons() {
       openUpgradeModal();
       return;
     }
+    console.log("New Folder clicked");
 
     const foldersSnap = await getDocs(collection(db, "users", uid, "folders"));
     const folderOptions = foldersSnap.docs.map(d => {
@@ -310,6 +352,7 @@ function setupButtons() {
     }).join("");
 
     openModal({
+      
       title: "Upload File",
       okText: "Upload",
       bodyHTML: `
